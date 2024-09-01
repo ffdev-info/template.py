@@ -24,6 +24,9 @@ package-upload: clean package-deps package-check            ## Upload package to
 
 package: package-upload
 
+upgrade:                                                    ## Upgrade project dependencies
+	pip-upgrade
+
 clean:                                                      ## Clean the package directory
 	rm -rf src/*.egg-info/
 	rm -rf build/
