@@ -13,12 +13,11 @@ name = "python-repo-template"
 
 # Required.
 #
-# NB. Use suffixes such as rc1 liberally as the version, once it is on PyPi
-# will be permanent. I.e. It isn't possible to replace a 1.0.0 which is not
-# ready for release if it was accidentally uploaded. It would need to become
-# 1.0.1 to replace 1.0.0 - but only if rc1, rc2 etc. wasn' appended at first.
+# Version and packaging dependencies should be dynamically set by features in
+# the package and using source control. This is the most reliable and accurate
+# way to do this.
 #
-version = "0.0.1-rc2"
+dynamic = ["version", "dependencies"]
 
 # Optional.
 description = "A one-line description of this Python project"
@@ -62,13 +61,10 @@ classifiers = [
   "Programming Language :: Python :: 3 :: Only",
 ]
 
-# Optional.
+# Dependencies.
 #
-# Packages installed by pip when the project is installed.
-dependencies = [
-  # "package1==6.0.0",
-  # "package2==6.0.0",
-]
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements/requirements.txt"]}
 
 # Optional.
 #
@@ -88,5 +84,7 @@ dependencies = [
 template = "template.template:main"
 
 [build-system]
-requires = ["setuptools>=67.8.0", "wheel"]
+requires = ["setuptools>=74.0.0", "wheel>=0.44.0", "setuptools_scm[toml]>=8.1.0"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]

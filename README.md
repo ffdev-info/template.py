@@ -76,6 +76,27 @@ the project on the official [pypi.org][pypi-2] repository. Have a look at the
 documentation and comments there to help you create a suitably descriptive
 metadata file.
 
+### Versioning
+
+Versioning in Python can be quite hit and miss. You can label versions for
+yourself, but to make it reliaable, as well as meaningful is should be
+controlled by your source control system. We assume git, and versions can
+be created by tagging your work and pushing the tag to your git repository,
+e.g. to create a release candidate for version 1.0.0:
+
+```sh
+git tag -a 1.0.0-rc.1 -m "release candidate for 1.0.0"
+git push origin 1.0.0-rc.1
+```
+
+When you build, a package will be created with the correct version:
+
+```sh
+make package-source
+### build process here ###
+Successfully built python_repo_template-1.0.0rc1.tar.gz and python_repo_template-1.0.0rc1-py3-none-any.whl
+```
+
 ### Local packaging
 
 To create a python wheel for testing locally, or distributing to colleagues
