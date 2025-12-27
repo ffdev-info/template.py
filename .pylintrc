@@ -12,6 +12,7 @@ ignore=
     .pylintrc,
 
 ignore-patterns=
+    ^justfile,
     ^(.+).ini$,
     ^(.+).md$,
     ^(.+).sh$,
