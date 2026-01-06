@@ -35,6 +35,18 @@ python -m tox -e py3
 python -m tox -e linting
 ```
 
+### just
+
+The repository is supported by a [`justfile`][just-1]. The easiest way to
+install `just` is to first install `cargo` and then run `cargo install just`.
+
+See [these instructions][just-2] for more information on installing `cargo`.
+
+Once you have installed run `just` on its own to see all available commands.
+
+[just-1]: https://github.com/casey/just
+[just-2]: https://doc.rust-lang.org/cargo/getting-started/installation.html
+
 ### pre-commit
 
 Pre-commit can be used to provide more feedback before committing code. This
@@ -49,24 +61,22 @@ This repository contains a default number of pre-commit hooks, but there may
 be others suited to different projects. A list of other pre-commit hooks can be
 found [here][pre-commit-1].
 
+Pre-commit can be run by calling `just pre-commit`.
+
 [pre-commit-1]: https://pre-commit.com/hooks.html
 
 ## Packaging
 
-The `Makefile` contains helper functions for packaging and release.
+The `justfile` contains helper functions for packaging and release.
 
-Makefile functions can be reviewed by calling `make`  from the root of this
-repository:
-
-```make
-clean                          Clean the package directory
-help                           Print this help message.
-package-check                  Check the distribution is valid
-package-deps                   Upgrade dependencies for packaging
-package-source                 Package the source code
-package-upload                 Upload package to pypi
-package-upload-test            Upload package to test.pypi
-tar-source                     Package repository as tar for easy distribution
+```just
+    clean               # Clean the package directory
+    package             # Package
+    package-check       # Check the distribution is valid
+    package-deps        # Upgrade dependencies for packaging
+    package-source      # Package the source code
+    package-upload      # Upload package to pypi
+    package-upload-test # Upload package to test.pypi
 ```
 
 ### pyproject.toml
@@ -92,7 +102,7 @@ git push origin 1.0.0-rc.1
 When you build, a package will be created with the correct version:
 
 ```sh
-make package-source
+just package-source
 ### build process here ###
 Successfully built python_repo_template-1.0.0rc1.tar.gz and python_repo_template-1.0.0rc1-py3-none-any.whl
 ```
@@ -102,7 +112,7 @@ Successfully built python_repo_template-1.0.0rc1.tar.gz and python_repo_template
 To create a python wheel for testing locally, or distributing to colleagues
 run:
 
-* `make package-source`
+* `just package-source`
 
 A `tar` and `whl` file will be stored in a `dist/` directory. The `whl` file
 can be installed as follows:
@@ -113,12 +123,12 @@ can be installed as follows:
 
 Publishing for public use can be achieved with:
 
-* `make package-upload-test` or `make package-upload`
+* `just package-upload-test` or `just package-upload`
 
-`make-package-upload-test` will upload the package to [test.pypi.org][pypi-1]
+`just-package-upload-test` will upload the package to [test.pypi.org][pypi-1]
 which provides a way to look at package metadata and documentation and ensure
 that it is correct before uploading to the official [pypi.org][pypi-2]
-repository using `make package-upload`.
+repository using `just package-upload`.
 
 [pypi-1]: https://test.pypi.org
 [pypi-2]: https://pypi.org
