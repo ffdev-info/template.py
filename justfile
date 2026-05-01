@@ -48,10 +48,6 @@ docs:
 serve-docs:
    python -m http.server --directory docs/
 
-# Serve the registry
-serve-registry:
-   python -m http.server --directory docs/registry/
-
 # Upgrade project dependencies
 upgrade:
 	pip-upgrade
