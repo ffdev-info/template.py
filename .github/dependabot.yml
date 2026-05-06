@@ -5,7 +5,7 @@ updates:
     schedule:
       interval: "monthly"
       time: "00:10"
-  - package-ecosystem: "pip"
+  - package-ecosystem: "uv"
     directory: "/"
     schedule:
       interval: "monthly"
